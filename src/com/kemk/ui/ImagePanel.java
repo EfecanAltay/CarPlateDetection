@@ -19,6 +19,16 @@ public class ImagePanel extends JPanel {
 	public ImagePanel() {
 	
 	}
+	public int GetImageWidth() {
+		if(image != null)
+		return image.getWidth();
+		return -1;
+	}
+	public int GetImageHeight() {
+		if(image != null)
+		return image.getHeight();
+		return -1;
+	}
 	public void SetImage(String path) {
 		try {
 			image = ImageIO.read(new File(path));
@@ -40,7 +50,7 @@ public class ImagePanel extends JPanel {
 		super.paintComponent(g);
 		
 		if(image != null)
-			g.drawImage(image,0,0,image.getWidth(),image.getHeight(),this);
+			g.drawImage(image,0,0,getWidth(),getHeight(),this);
 	}
 	
 

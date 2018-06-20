@@ -182,23 +182,44 @@ public class CameraPanel extends ImagePanel {
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
+		float Ho = (float)getHeight()/(float)GetImageHeight();
 		if(!isLiveTracking) {
 			g.setColor(Color.GREEN);
-			g.drawLine(0,MotionSetValue,getWidth(),MotionSetValue);
+			g.drawLine(0,(int)(MotionSetValue * Ho),getWidth(),(int)(MotionSetValue * Ho));
 			g.setColor(Color.RED);
-			g.drawLine(0,MotionSetValue2,getWidth(),MotionSetValue2);
+			g.drawLine(0,(int)(MotionSetValue2 * Ho),getWidth(),(int)(MotionSetValue2 * Ho));
 			}
 		if(isplateFound) {
 			g.setColor(Color.GREEN);
-			
 			//g.drawRect(pRect.x, pRect.y, pRect.w, pRect.h);
-
-			g.drawLine(pRect.x1.x1 ,pRect.x1.y1, pRect.x1.x2, pRect.x1.y2);
-			g.drawLine(pRect.x2.x1,pRect.x2.y1, pRect.x2.x2, pRect.x2.y2);
-			g.drawLine(pRect.y1.x1,pRect.y1.y1, pRect.y1.x2, pRect.y1.y2);
-			g.drawLine(pRect.y2.x1,pRect.y2.y1, pRect.y2.x2, pRect.y2.y2);
-			
+			DrawPlate(g);
 			//g.fillRect(10, 10, 100, 100);
 		}
+	}
+	void DrawPlate(Graphics g) {
+		float Wo = (float)getWidth()/(float)GetImageWidth();
+		float Ho = (float)getHeight()/(float)GetImageHeight();
+		System.out.println("get w : " + getWidth() + " im w : " + GetImageWidth() + " w0 :" + Wo);
+		int x0,y0,x1,y1;
+		x0 = (int)(pRect.x1.x1 * Wo) ;
+		y0 = (int)(pRect.x1.y1 * Ho) ;
+		x1 = (int)(pRect.x1.x2 * Wo) ;
+		y1 = (int)(pRect.x1.y2 * Ho) ;
+		g.drawLine(x0,y0,x1,y1);
+		x0 = (int)(pRect.x2.x1 * Wo) ;
+		y0 = (int)(pRect.x2.y1 * Ho) ;
+		x1 = (int)(pRect.x2.x2 * Wo) ;
+		y1 = (int)(pRect.x2.y2 * Ho) ;
+		g.drawLine(x0,y0,x1,y1);
+		x0 = (int)(pRect.y1.x1 * Wo) ;
+		y0 = (int)(pRect.y1.y1 * Ho) ;
+		x1 = (int)(pRect.y1.x2 * Wo) ;
+		y1 = (int)(pRect.y1.y2 * Ho) ;
+		g.drawLine(x0,y0,x1,y1);
+		x0 = (int)(pRect.y2.x1 * Wo) ;
+		y0 = (int)(pRect.y2.y1 * Ho) ;
+		x1 = (int)(pRect.y2.x2 * Wo) ;
+		y1 = (int)(pRect.y2.y2 * Ho) ;
+		g.drawLine(x0,y0,x1,y1);
 	}
 }
